@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Item.css";
 import NewProjectPopup from "./NewProjectPopup"; // Import the new component
 
-const data = [
+const initialData = [
   {
     name: "Project 1",
     ownedBy: "You",
@@ -27,9 +27,12 @@ const data = [
 ];
 
 const Item = () => {
+  const [data, setData] = useState(initialData);
   const [showPopup, setShowPopup] = useState(false); // State to manage popup visibility
+  const [editIndex, setEditIndex] = useState(null); // State to manage the index of the row being edited
 
   const handleNewProjectClick = () => {
+    setEditIndex(null);
     setShowPopup(true);
   };
 
@@ -37,10 +40,35 @@ const Item = () => {
     setShowPopup(false);
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
+  const handleFormSubmit = (formData) => {
+    if (editIndex !== null) {
+      // Edit existing project
+      const updatedData = data.map((item, index) =>
+        index === editIndex ? { ...item, ...formData } : item
+      );
+      setData(updatedData);
+    } else {
+      // Add new project to the data
+      const newProject = {
+        name: formData.name,
+        ownedBy: "You",
+        team: "Synolo",
+        progress: "0%",
+        startDate: formData.startDate,
+      };
+      setData([...data, newProject]);
+    }
     setShowPopup(false);
+  };
+
+  const handleDelete = (index) => {
+    const newData = data.filter((_, i) => i !== index);
+    setData(newData);
+  };
+
+  const handleEdit = (index) => {
+    setEditIndex(index);
+    setShowPopup(true);
   };
 
   return (
@@ -70,8 +98,8 @@ const Item = () => {
                 <td>{item.progress}</td>
                 <td>{item.startDate}</td>
                 <td className="actions">
-                  <button className="action-btn delete-btn">🗑️</button>
-                  <button className="action-btn edit-btn">✏️</button>
+                  <button className="action-btn delete-btn" onClick={() => handleDelete(index)}>🗑️</button>
+                  <button className="action-btn edit-btn" onClick={() => handleEdit(index)}>✏️</button>
                 </td>
               </tr>
             ))}
@@ -83,6 +111,7 @@ const Item = () => {
         <NewProjectPopup
           onClose={handleClosePopup}
           onSubmit={handleFormSubmit}
+          initialData={editIndex !== null ? data[editIndex] : null}
         />
       )}
     </div>

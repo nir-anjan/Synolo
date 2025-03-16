@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./NewProjectPopup.css";
 
-const NewProjectPopup = ({ onClose, onSubmit }) => {
+const NewProjectPopup = ({ onClose, onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -12,11 +12,14 @@ const NewProjectPopup = ({ onClose, onSubmit }) => {
   });
 
   useEffect(() => {
+    if (initialData) {
+      setFormData(initialData);
+    }
     document.body.classList.add("blurred-background");
     return () => {
       document.body.classList.remove("blurred-background");
     };
-  }, []);
+  }, [initialData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,86 +58,84 @@ const NewProjectPopup = ({ onClose, onSubmit }) => {
     <div className="popup">
       <div className="popup-content">
         <div className="popup-header">
-        <h3>Create New Project</h3>
-        <button className="close-button" onClick={onClose}>❌</button>
-
+          <h3>{initialData ? "Edit Project" : "Create New Project"}</h3>
+          <button className="close-button" onClick={onClose}>❌</button>
         </div>
         <div className="popup-body">
-        <form onSubmit={handleSubmit}>
-          {/* Project Details */}
-          <h4>📝 Project Details</h4>
-          <label>
-            Project Name:
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter project name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Project Description:
-            <textarea
-              name="description"
-              placeholder="Briefly describe your project"
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </label>
+          <form onSubmit={handleSubmit}>
+            {/* Project Details */}
+            <h4>📝 Project Details</h4>
+            <label>
+              Project Name:
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter project name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Project Description:
+              <textarea
+                name="description"
+                placeholder="Briefly describe your project"
+                value={formData.description}
+                onChange={handleChange}
+              ></textarea>
+            </label>
 
-          {/* Team Management */}
-          <h4>👥 Team Management</h4>
-          <label>
-            Invite Member:
-            <input
-              type="text"
-              name="memberInput"
-              placeholder="Enter email or username to invite a member"
-              value={formData.memberInput}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={handleAddMember}>Invite Member</button>
-          </label>
-          <ul>
-            {formData.members.map((member, index) => (
-              <li key={index}>
-                {member}
-                <button type="button" onClick={() => handleRemoveMember(member)}>Remove</button>
-              </li>
-            ))}
-          </ul>
+            {/* Team Management */}
+            <h4>👥 Team Management</h4>
+            <label>
+              Invite Member:
+              <input
+                type="text"
+                name="memberInput"
+                placeholder="Enter email or username to invite a member"
+                value={formData.memberInput}
+                onChange={handleChange}
+              />
+              <button type="button" onClick={handleAddMember}>Invite Member</button>
+            </label>
+            <ul>
+              {formData.members.map((member, index) => (
+                <li key={index}>
+                  {member}
+                  <button type="button" onClick={() => handleRemoveMember(member)}>Remove</button>
+                </li>
+              ))}
+            </ul>
 
-          {/* Timeline & Milestones */}
-          <h4>📅 Timeline & Milestones</h4>
-          <label>
-            Start Date:
-            <input
-              type="date"
-              name="startDate"
-              placeholder="Select start date"
-              value={formData.startDate}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <label>
-            Expected End Date:
-            <input
-              type="date"
-              name="endDate"
-              placeholder="Select expected end date"
-              value={formData.endDate}
-              onChange={handleChange}
-            />
-          </label>
+            {/* Timeline & Milestones */}
+            <h4>📅 Timeline & Milestones</h4>
+            <label>
+              Start Date:
+              <input
+                type="date"
+                name="startDate"
+                placeholder="Select start date"
+                value={formData.startDate}
+                onChange={handleChange}
+                required
+              />
+            </label>
+            <label>
+              Expected End Date:
+              <input
+                type="date"
+                name="endDate"
+                placeholder="Select expected end date"
+                value={formData.endDate}
+                onChange={handleChange}
+              />
+            </label>
 
-          {/* Actions */}
-          <button type="submit">Create Project</button>
-          <button type="button" onClick={onClose}>Cancel</button>
-        </form>
-
+            {/* Actions */}
+            <button type="submit">{initialData ? "Save Changes" : "Create Project"}</button>
+            <button type="button" onClick={onClose}>Cancel</button>
+          </form>
         </div>
       </div>
     </div>
