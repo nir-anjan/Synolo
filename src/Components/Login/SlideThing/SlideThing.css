@@ -1,0 +1,41 @@
+/* Ensure Swiper is properly styled */
+.mySwiper {
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  /* Card styling */
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide > div {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px; /* Adjust width */
+  }
+  
+  .swiper-slide img {
+    width: 120px; /* Adjust size */
+    height: 120px;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Pagination styling */
+  .swiper-pagination-bullet {
+    background: #666;
+    opacity: 0.6;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background: #007bff;
+    opacity: 1;
+  }
+  

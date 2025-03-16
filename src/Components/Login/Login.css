@@ -1,0 +1,107 @@
+/* Center the form */
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
+.container{
+    /* height: 100%;
+    width: 100%;
+    overflow: hidden; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    position: absolute;
+    
+}
+.container img{
+    position: relative;  /* or fixed, relative depending on the need */
+    left: 1000px;
+    top: -1200px;
+    
+}
+
+.login-container {
+    
+    
+    width: 447px;
+    height: 565px;
+    margin-left:  110px ;
+    margin-top:  220px ;
+    /* box-shadow: 5px 5px 5px rgb(105, 105, 105); */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    gap: 82px;
+
+    
+  }
+
+
+
+
+.heading{
+    padding-bottom: 82px;
+}
+
+.heading h2 {
+    font-size: 36px;
+    margin: 0px;
+}
+.heading p{
+    font-size: 16px;
+    margin: 0px;
+}
+a{
+    font-size: 16px;
+    color: #6B6B6B;
+    text-decoration: none;
+    display:  flex;
+    
+}
+
+.form-container a{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 16px;
+    padding-bottom: 82px;  
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+input{
+    border: 2px solid #EAEAEA;
+    
+    
+    width: 447px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 22px;
+}
+input::placeholder {
+    color: #EAEAEA; /* Change placeholder color */
+   
+}
+
+
+
+button {
+    width: 170px;
+    height: 50px;
+    padding: 12px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
