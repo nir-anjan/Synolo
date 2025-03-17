@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./TaskCard.css";
 
-const TaskCard = ({ taskName, date, assignedTo, status }) => {
+const TaskCard = ({
+  taskName,
+  date,
+  assignedTo,
+  status,
+  draggable,
+  onDragStart,
+}) => {
   const [taskStatus, setTaskStatus] = useState(status);
 
   const handleStatusChange = (event) => {
@@ -9,7 +16,7 @@ const TaskCard = ({ taskName, date, assignedTo, status }) => {
   };
 
   return (
-    <div className="task-card">
+    <div className="task-card" draggable={draggable} onDragStart={onDragStart}>
       <div className="task-header">
         <h3 className="task-title">{taskName}</h3>
         <div className="task-date-section">

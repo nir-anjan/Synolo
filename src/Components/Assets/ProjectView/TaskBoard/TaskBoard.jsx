@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TaskBoard.css";
 import TaskCard from "../../../Dashboard/MyTasks/TaskCard"; // import TaskCard
 
-const tasks = [
+const initialTasks = [
   {
     id: 1,
     taskName: "Design Homepage UI",
@@ -69,11 +69,36 @@ const tasks = [
 ];
 
 const TaskBoard = () => {
+  const [tasks, setTasks] = useState(initialTasks);
+
+  const onDragStart = (event, taskId) => {
+    event.dataTransfer.setData("taskId", taskId);
+  };
+
+  const onDrop = (event, status) => {
+    const taskId = event.dataTransfer.getData("taskId");
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === parseInt(taskId)) {
+        task.status = status;
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
+
+  const onDragOver = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className="task-board">
       <h2 className="task-title">Tasks</h2>
       <div className="task-columns">
-        <div className="task-column">
+        <div
+          className="task-column"
+          onDrop={(event) => onDrop(event, "todo")}
+          onDragOver={onDragOver}
+        >
           <h3>Todo</h3>
           {tasks
             .filter((task) => task.status === "todo")
@@ -84,10 +109,16 @@ const TaskBoard = () => {
                 date={task.date}
                 assignedTo={task.assignedTo}
                 status={task.status}
+                draggable
+                onDragStart={(event) => onDragStart(event, task.id)}
               />
             ))}
         </div>
-        <div className="task-column">
+        <div
+          className="task-column"
+          onDrop={(event) => onDrop(event, "in-progress")}
+          onDragOver={onDragOver}
+        >
           <h3>Progress</h3>
           {tasks
             .filter((task) => task.status === "in-progress")
@@ -98,10 +129,16 @@ const TaskBoard = () => {
                 date={task.date}
                 assignedTo={task.assignedTo}
                 status={task.status}
+                draggable
+                onDragStart={(event) => onDragStart(event, task.id)}
               />
             ))}
         </div>
-        <div className="task-column">
+        <div
+          className="task-column"
+          onDrop={(event) => onDrop(event, "done")}
+          onDragOver={onDragOver}
+        >
           <h3>Done</h3>
           {tasks
             .filter((task) => task.status === "done")
@@ -112,6 +149,8 @@ const TaskBoard = () => {
                 date={task.date}
                 assignedTo={task.assignedTo}
                 status={task.status}
+                draggable
+                onDragStart={(event) => onDragStart(event, task.id)}
               />
             ))}
         </div>
