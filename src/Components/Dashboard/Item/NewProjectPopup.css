@@ -62,6 +62,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .close-button {
@@ -82,20 +83,7 @@
 }
 
 
-@media (max-width: 768px) {
-    .popup {
-        width: 90%;
-        height: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 
-    .popup-content {
-        width: 100%;
-        height: auto;
-    }
-}
 
 /* Add a blurred background effect */
 .blurred-background::before {
@@ -108,4 +96,17 @@
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     backdrop-filter: blur(5px); /* Blur effect */
     z-index: 999; /* Ensure it is behind the popup */
+}
+
+.popup-content {
+    width: 1000px;
+    height: 800px;
+}
+
+.popup {
+    width: 1000px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    
 }
