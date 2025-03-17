@@ -1,5 +1,37 @@
-body{
-    background-color: #ECF0FF;
-    padding: 0px;
-    margin: 0px;
+body {
+  background-color: #ecf0ff;
+  padding: 0px;
+  margin: 0px;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+}
+
+.navbar-div {
+  width: 214px; /* Fixed width for the navbar */
+  background-color: #f8f8f8; /* Change if needed */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  flex: 1; /* Take the remaining width */
+  display: flex;
+  flex-direction: column;
+}
+
+.topBar-div {
+  /* flex-grow: 1;  */
+  align-self: stretch;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.items-container {
+  flex: 1; /* Take the remaining height */
+  display: flex;
+  gap: 30px;
+  background-color: #ecf0ff;
 }

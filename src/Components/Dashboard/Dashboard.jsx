@@ -3,6 +3,7 @@ import Navbar from "./Navbar/Navbar";
 import TopBar from './TopBar/TopBar';
 import Item from './Item/Item';
 import "./Dashboard.css"
+import MyTasks from './MyTasks/MyTasks';
 
 const Dashboard = () => {
   return (
@@ -15,8 +16,8 @@ const Dashboard = () => {
           <TopBar />
         </div>
         <div className='items-container'>
-          
           <Item />
+          <MyTasks/>
         </div>
       </div>
     </div>

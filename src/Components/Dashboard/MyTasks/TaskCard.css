@@ -1,0 +1,73 @@
+.task-card {
+  width: 300px;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background-color: #fff;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task-title {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.task-date {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.task-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.assigned-section,
+.status-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+
+.status-dropdown {
+  padding: 4px;
+}
+
+.options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.task-date-section {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}

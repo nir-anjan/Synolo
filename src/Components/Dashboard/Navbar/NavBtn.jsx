@@ -2,13 +2,10 @@ import React from "react";
 
 const NavBtn = (props) => {
   return (
-    <div className="btn">
-      <button>
+    <div>
+      <button className="btn">
         <img src={props.path} alt="icon" />
-        <div className="">
-
-        {props.label}
-        </div>
+        <div className="">{props.label}</div>
       </button>
     </div>
   );

@@ -28,7 +28,7 @@
 
     flex: 1; /* Take the remaining height */
     display: flex;
-    
+    gap: 30px;
     background-color: #ECF0FF;
 }
 
